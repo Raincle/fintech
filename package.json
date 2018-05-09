@@ -1,0 +1,26 @@
+{
+  "name": "fintech",
+  "version": "0.0.1",
+  "description": "Financial technology utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raincle/fintech.git"
+  },
+  "keywords": [
+    "fintech",
+    "finance",
+    "technology",
+    "fin-tech",
+    "utilities"
+  ],
+  "author": "Raincle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Raincle/fintech/issues"
+  },
+  "homepage": "https://github.com/Raincle/fintech#readme"
+}
