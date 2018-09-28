@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Raincle/fintech/issues"
   },
-  "homepage": "https://github.com/Raincle/fintech#readme"
+  "homepage": "https://github.com/Raincle/fintech#readme",
+  "dependencies": {
+    "decimal.js": "^10.0.1"
+  }
 }
