@@ -2,11 +2,11 @@ const Decimal = require('decimal.js')
 
 /*
  * @param {Number} num
- * 需要转化为百分数的数值
+ * The number you want to transform
  * @param {Number} type
- * 百分号或千分号
+ * 100 => %, 1000 => ‰, 10000 => ‱
  * @param {Number} di
- * 需要精确到小数点后的位数
+ * Accuracy of digits
  * @return {String}
  */
 const numberToRate = (num, type, di) => {
