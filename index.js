@@ -10,9 +10,11 @@ const Decimal = require('decimal.js')
  * @return {String}
  */
 const numberToRate = (num, type, di) => {
-  type = type || 100
-  let symbol = '%'
+  let symbol = ''
   switch (type) {
+    case 100:
+      symbol = '%'
+      break
     case 1000:
       symbol = '‰'
       break
