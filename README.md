@@ -13,6 +13,7 @@ $ npm i --save fintech
 ## Common Usage
 ```js
 const { numberToRate } = require('fintech')
+
 const rateA = numberToRate(0.618, 100, 1) // number, type, accuracy
 console.log(rateA) // 61.8%
 
@@ -22,3 +23,5 @@ console.log(rateB) // 3.142‰
 const rateC = numberToRate(0.00299792458, 10000, 5) // number, type, accuracy
 console.log(rateC) // 29.97925‱
 ```
+
+## Advanced Usage
