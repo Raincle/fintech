@@ -25,7 +25,7 @@ const numberToRate = (num, type, di) => {
       type = 100
       symbol = '%'
       try {
-        throw new Error('Value of type is not 100/1000/10000, type is set to 100 and symbol will be %')
+        throw new Error('Value of type is set to 100 and symbol will be %')
       } catch (e) {
         console.log(e)
       }
