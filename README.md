@@ -14,5 +14,5 @@ $ npm i --save fintech
 ```js
 const { numberToRate } = require('fintech')
 const rate = numberToRate(0.618, 100, 1)
-console.log(rate)
+console.log(rate) // 61.8%
 ```
