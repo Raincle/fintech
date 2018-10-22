@@ -25,6 +25,16 @@ const rateC = numberToRate(0.00299792458, 10000, 5)
 console.log(rateC) // 29.97925‱
 ```
 
+```js
+const { assetsSummary } = require('fintech')
+
+const amount = {BTC: 1, ETH: 10}
+const price = {BTC: 10000, ETH: 1000}
+
+const assets = assetsSummary(amount, price) // amountObject, priceObject
+console.log(assets) // {assets: {BTC: 10000, ETH: 10000}, total: 20000}
+```
+
 ## Advanced Usage
 
 ## License

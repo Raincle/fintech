@@ -38,6 +38,37 @@ const numberToRate = (num, type, di) => {
   return `${finValue}${symbol}`
 }
 
+/*
+ * @param {Object} amount
+ * The amount you have
+ * @param {Object} price
+ * The price of each amount
+ * @return {assets, total}
+ */
+const assetsSummary = (amount, price) => {
+  let assets = {}
+  let total = new Decimal(0)
+  for (var amountSymbol in amount) {
+    if (amount.hasOwnProperty(amountSymbol)) {
+      const symbolAmount = new Decimal(amount[amountSymbol])
+
+      for (var priceSymbol in price) {
+        if (price.hasOwnProperty(priceSymbol)) {
+          if (priceSymbol === amountSymbol) {
+            const symbolPrice = price[priceSymbol]
+            assets[amountSymbol] = symbolAmount.mul(symbolPrice).toNumber()
+            total = total.add(assets[amountSymbol])
+          }
+        }
+      }
+
+    }
+  }
+
+  return {assets, total: total.toNumber()}
+}
+
 module.exports = {
-  numberToRate
+  numberToRate,
+  assetsSummary
 }
