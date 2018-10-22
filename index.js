@@ -39,20 +39,47 @@ const numberToRate = (num, type, di) => {
 }
 
 /*
+ * @param {Array} assetsArr
+ * The assets you have
+ * @return {Object}
+ */
+const assetsSum = (assetsArr) => {
+  let assetsSymbols = []
+  let assets = {}
+
+  assetsArr.forEach((item) => {
+    for (let symbol in item) {
+      if (item.hasOwnProperty(symbol)) {
+
+        if (assetsSymbols.indexOf(symbol) < 0) {
+          assets[symbol] = item[symbol]
+          assetsSymbols.push(symbol)
+        } else {
+          assets[symbol] = new Decimal(assets[symbol]).add(item[symbol]).toNumber()
+        }
+
+      }
+    }
+  })
+
+  return assets
+}
+
+/*
  * @param {Object} amount
  * The amount you have
  * @param {Object} price
  * The price of each amount
  * @return {assets, total}
  */
-const assetsSummary = (amount, price) => {
+const assetsValue = (amount, price) => {
   let assets = {}
   let total = new Decimal(0)
-  for (var amountSymbol in amount) {
+  for (let amountSymbol in amount) {
     if (amount.hasOwnProperty(amountSymbol)) {
       const symbolAmount = new Decimal(amount[amountSymbol])
 
-      for (var priceSymbol in price) {
+      for (let priceSymbol in price) {
         if (price.hasOwnProperty(priceSymbol)) {
           if (priceSymbol === amountSymbol) {
             const symbolPrice = price[priceSymbol]
@@ -70,5 +97,6 @@ const assetsSummary = (amount, price) => {
 
 module.exports = {
   numberToRate,
-  assetsSummary
+  assetsSum,
+  assetsValue
 }

@@ -15,7 +15,7 @@ $ npm i --save fintech
 ```js
 const { numberToRate } = require('fintech')
 
-const rateA = numberToRate(0.618, 100, 1) // number, type, accuracy
+const rateA = numberToRate(0.618, 100, 1) // Number, type, accuracy
 console.log(rateA) // 61.8%
 
 const rateB = numberToRate(0.003141592653, 1000, 3)
@@ -26,12 +26,25 @@ console.log(rateC) // 29.97925‱
 ```
 
 ```js
-const { assetsSummary } = require('fintech')
+const { assetsSum } = require('fintech')
+
+const amountA = {BTC: 1, ETH: 11}
+const amountB = {BTC: 2, ETH: 22}
+const amountC = {BTC: 3, ETH: 33}
+
+const assetsArr = [amountA, amountB, amountC]
+
+const assets = assetsValue(assetsArr) // Assets array
+console.log(assets) // {BTC: 6, ETH: 66}
+```
+
+```js
+const { assetsValue } = require('fintech')
 
 const amount = {BTC: 1, ETH: 10}
 const price = {BTC: 10000, ETH: 1000}
 
-const assets = assetsSummary(amount, price) // amountObject, priceObject
+const assets = assetsValue(amount, price) // Amount object, price object
 console.log(assets) // {assets: {BTC: 10000, ETH: 10000}, total: 20000}
 ```
 
