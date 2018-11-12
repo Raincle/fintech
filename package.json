@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Raincle/fintech#readme",
   "dependencies": {
-    "decimal.js": "^10.0.1"
+    "decimal.js": "^10.0.1",
+    "node-fetch": "^2.2.1"
   }
 }
