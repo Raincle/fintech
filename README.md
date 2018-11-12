@@ -34,7 +34,7 @@ const amountC = {BTC: 3, ETH: 33}
 
 const assetsArr = [amountA, amountB, amountC]
 
-const assets = assetsValue(assetsArr) // Assets array
+const assets = assetsSum(assetsArr) // Assets array
 console.log(assets) // {BTC: 6, ETH: 66}
 ```
 
