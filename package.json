@@ -1,6 +1,6 @@
 {
   "name": "fintech",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Financial technology utilities",
   "main": "index.js",
   "scripts": {
