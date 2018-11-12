@@ -13,10 +13,10 @@ $ npm i --save fintech
 
 ## Common Usage
 ```js
-/*
- * Function currencyRate will return a promise
+/* Function currencyRate will return a promise
  * So you need to await it
  * Rate will change every day
+ *
  * Thank currencyconverterapi.com for their free support
  */
 const { currencyRate } = require('fintech')
