@@ -109,9 +109,21 @@ const currencyRate = (c1, c2) => {
   return fetch(baseURL).then(res => res.json()).then(json => {return json[ratePair].val})
 }
 
+/*
+ * @param {String or Number} num
+ * The currency you want to transform
+ * @return {String} res
+ */
+const splitNum = (num) => {
+  const float = parseFloat(num)
+  const res = float.toLocaleString("en-US")
+  return res
+}
+
 module.exports = {
   numberToRate,
   assetsSum,
   assetsValue,
-  currencyRate
+  currencyRate,
+  splitNum
 }
