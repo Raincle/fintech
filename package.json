@@ -1,6 +1,6 @@
 {
   "name": "fintech",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "Financial technology utilities",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Raincle/fintech#readme",
   "dependencies": {
-    "decimal.js": "^10.0.1"
+    "decimal.js": "^10.0.1",
+    "node-fetch": "^2.2.1"
   }
 }

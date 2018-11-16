@@ -1,4 +1,5 @@
 const Decimal = require('decimal.js')
+const fetch = require('node-fetch')
 
 /*
  * @param {Number} num
@@ -95,8 +96,22 @@ const assetsValue = (amount, price) => {
   return {assets, total: total.toNumber()}
 }
 
+/*
+ * @param {String} c1
+ * The currency you want to transform
+ * @param {String} c2
+ * The currency you want to transform to
+ * @return {Number} rate
+ */
+const currencyRate = (c1, c2) => {
+  const ratePair = `${c1.toUpperCase()}_${c2.toUpperCase()}`
+  const baseURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${ratePair}&compact=y`
+  return fetch(baseURL).then(res => res.json()).then(json => {return json[ratePair].val})
+}
+
 module.exports = {
   numberToRate,
   assetsSum,
-  assetsValue
+  assetsValue,
+  currencyRate
 }

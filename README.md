@@ -13,6 +13,23 @@ $ npm i --save fintech
 
 ## Common Usage
 ```js
+/* Function currencyRate will return a promise
+ * So you need to await it
+ * Rate will change every day
+ *
+ * Thank currencyconverterapi.com for their free support
+ */
+const { currencyRate } = require('fintech')
+
+const main = async () => {
+  let rate = await currencyRate('usd', 'cny')
+  console.log(rate) // 6.965298
+}
+
+main()
+```
+
+```js
 const { numberToRate } = require('fintech')
 
 const rateA = numberToRate(0.618, 100, 1) // Number, type, accuracy
@@ -34,7 +51,7 @@ const amountC = {BTC: 3, ETH: 33}
 
 const assetsArr = [amountA, amountB, amountC]
 
-const assets = assetsValue(assetsArr) // Assets array
+const assets = assetsSum(assetsArr) // Assets array
 console.log(assets) // {BTC: 6, ETH: 66}
 ```
 
