@@ -13,7 +13,20 @@ $ npm i --save fintech
 
 ## Common Usage
 ```js
-/* Function currencyRate will return a promise
+/*
+ *Calculate max loss of an array
+ */
+const { maxLoss } = require('fintech')
+
+const tickArr = [1, 1.2, 1.15, 1.08, 1.16]
+const lossRate = maxLoss(tickArr)
+
+console.log(lossRate) // -10%
+```
+
+```js
+/*
+ *Function currencyRate will return a promise
  * So you need to await it
  * Rate will change every day
  *

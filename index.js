@@ -23,13 +23,10 @@ const numberToRate = (num, type, di) => {
       symbol = '‱'
       break
     default:
+      // 'Value of type is set to 100 and symbol will be %'
       type = 100
       symbol = '%'
-      try {
-        throw new Error('Value of type is set to 100 and symbol will be %')
-      } catch (e) {
-        console.log(e)
-      }
+      break
   }
 
   di = di || 2
@@ -120,10 +117,32 @@ const splitNum = (num) => {
   return res
 }
 
+/*
+ * @param {Array} tickArr
+ * An array of assets history
+ * @param {Number} type
+ * 100 => %, 1000 => ‰, 10000 => ‱
+ * @param {Number} di
+ * Accuracy of digits
+ * @return {String} tempLoss
+ */
+const maxLoss = (tickArr, type, di) => {
+  let maxValue = 0
+  let tempLoss = 0
+  tickArr.forEach((tick) => {
+    const tickFloat = parseFloat(tick)
+    const currentLoss = (tickFloat - maxValue) / maxValue
+    tempLoss = tempLoss < currentLoss ? tempLoss : currentLoss
+    maxValue = maxValue > tickFloat ? maxValue : tickFloat
+  })
+  return numberToRate(tempLoss, type, di)
+}
+
 module.exports = {
   numberToRate,
   assetsSum,
   assetsValue,
   currencyRate,
-  splitNum
+  splitNum,
+  maxLoss
 }
