@@ -1,5 +1,4 @@
 const Decimal = require('decimal.js')
-const fetch = require('node-fetch')
 
 /*
  * @param {Number} num
@@ -94,19 +93,6 @@ const assetsValue = (amount, price) => {
 }
 
 /*
- * @param {String} c1
- * The currency you want to transform
- * @param {String} c2
- * The currency you want to transform to
- * @return {Number} rate
- */
-const currencyRate = (c1, c2) => {
-  const ratePair = `${c1.toUpperCase()}_${c2.toUpperCase()}`
-  const baseURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${ratePair}&compact=y`
-  return fetch(baseURL).then(res => res.json()).then(json => {return json[ratePair].val})
-}
-
-/*
  * @param {String or Number} num
  * The currency you want to transform
  * @return {String} res
@@ -138,11 +124,82 @@ const maxLoss = (tickArr, type, di) => {
   return numberToRate(tempLoss, type, di)
 }
 
+/*
+ * @param {Number} n
+ * 5 => MA5, 10 => MA10
+ * @param {List} candleList
+ * A list of candles object
+ * @param {Number} isNewCandleFirst
+ * If new candle is first, set true(default)
+ * @return {Float} ma
+ */
+const ma = (n, candleList, isNewCandleFirst) => {
+  let maValue = 0
+  if (isNewCandleFirst === false) {
+      candleList.reverse()
+  }
+  candleList.forEach((candle, index) => {
+    if (index < n) {
+      maValue += parseFloat(candle.close)
+    } 
+  })
+  maValue /= n
+
+  return maValue
+}
+
+/*
+ * Calc WR Index
+ * @param {Number} n
+ * 交易者设定的周期
+ * @param {List} candleList
+ * 蜡烛数据列表
+ * @param {bool} isNewCandleFirst
+ * 最新蜡烛数据是否在下标第一位
+ */
+const wr = (n, candleList, isNewCandleFirst) => {
+  let nList = [] // 周期内的蜡烛数据
+  let c // 第n日最新收盘价
+  let hn // 第n日内最高价
+  let ln // 第n日内最低价
+  if (isNewCandleFirst === false) {
+    candleList.forEach((item, index) => {
+      if (index > candleList.length - n - 1) {
+        nList.push(item)
+      }
+    })
+    c = nList[n - 1].close
+  } else {
+    candleList.forEach((item, index) => {
+      if (index < n) {
+        nList.push(item)
+      }
+    })
+    c = nList[0].close
+    nList.reverse()
+  }
+  hn = nList[0].high
+  nList.forEach((item) => {
+    hn = hn > item.high ? hn : item.high
+  })
+  ln = nList[0].low
+  nList.forEach((item) => {
+    ln = ln > item.low ? item.low : ln
+  })
+
+  const wrIndex = (c- hn) / (hn - ln) * 100
+  
+  return wrIndex
+}
+
+
+
 module.exports = {
   numberToRate,
   assetsSum,
   assetsValue,
-  currencyRate,
   splitNum,
-  maxLoss
+  maxLoss,
+  ma,
+  wr
 }

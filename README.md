@@ -26,20 +26,32 @@ console.log(lossRate) // -10%
 
 ```js
 /*
- *Function currencyRate will return a promise
- * So you need to await it
- * Rate will change every day
- *
- * Thank currencyconverterapi.com for their free support
+ *Calculate MA of a List of candles 
  */
-const { currencyRate } = require('fintech')
+const { ma } = require('fintech')
 
-const main = async () => {
-  let rate = await currencyRate('usd', 'cny')
-  console.log(rate) // 6.965298
-}
+const candlesList = [{close: 5}, {close: 6}, {close: 7}, {close: 8}, {close: 9}]
+const ma5 = ma(5, candlesList)
 
-main()
+console.log(ma5) // 7
+```
+
+```js
+/*
+ *Calculate WR Index of a List of candles 
+ */
+const { wr } = require('fintech')
+
+const candlesList = [
+    {open: 5, high: 5, low: 5, close: 5,},
+    {open: 6, high: 6, low: 6, close: 6,},
+    {open: 7, high: 7, low: 7, close: 7,},
+    {open: 8, high: 8, low: 8, close: 8,},
+    {open: 9, high: 9, low: 9, close: 9,}
+]
+const wr5 = wr(5, candlesList)
+
+console.log(wr5) // 0
 ```
 
 ```js
