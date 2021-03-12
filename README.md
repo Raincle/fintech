@@ -70,7 +70,7 @@ console.log(rateC) // 29.97925‱
 ```js
 const { spitNum } = require('fintech')
 
-const localeA = numberToRate(58888.88) // Number, Unit, Symbol
+const localeA = numberToRate(58888.88) // Number
 console.log(localeA) // 58,888.88
 
 const localeB = numberToRate('100000000000', 4) // String, Unit
