@@ -94,13 +94,35 @@ const assetsValue = (amount, price) => {
 
 /*
  * @param {String or Number} num
- * The currency you want to transform
- * @return {String} res
+ * The number you want to transform
+ * @param {Integer} unit
+ * the place you want to depart
+ * @param {String} symbol
+ * The symbol you want to add
+ * @return {String} localeString
  */
-const splitNum = (num) => {
-  const float = parseFloat(num)
-  const res = float.toLocaleString("en-US")
-  return res
+const splitNum = (num, unit, symbol) => {
+  unit = parseInt(unit || 3)
+  symbol = (symbol || ',').toString()
+  const numString = num.toString()
+  const intPart = numString.split('.')[0]
+  const intPartArr = intPart.split('')
+  let floatPart = numString.split('.')[1]
+  if (floatPart) {
+    floatPart = floatPart.slice(0, 3)
+  }
+  
+  let newIntPart = ''
+  for (let i = 0; i < intPartArr.length; i++) {
+    const element = intPartArr[i]
+    const index = intPartArr.length - i - 1
+    newIntPart = newIntPart + element
+    if (index % unit === 0 && index !== 0) {
+      newIntPart += symbol
+    }
+  }
+  const localeString = newIntPart + (floatPart ? `.${floatPart}` : '')
+  return localeString
 }
 
 /*

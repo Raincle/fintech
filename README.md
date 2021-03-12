@@ -68,6 +68,22 @@ console.log(rateC) // 29.97925‱
 ```
 
 ```js
+const { spitNum } = require('fintech')
+
+const localeA = numberToRate(58888.88) // Number, Unit, Symbol
+console.log(localeA) // 58,888.88
+
+const localeB = numberToRate('100000000000', 4) // String, Unit
+console.log(localeB) // 1000,0000,0000
+
+const localeC = numberToRate(100000000000, 4, ' ') // Number, Unit, Symbol
+console.log(localeC) // 1000 0000 0000
+
+const localeD = numberToRate('BTCETHLTC', 3, ' 🚀 ') // String, Unit, Symbol
+console.log(localeD) // BTC 🚀 ETH 🚀 LTC
+```
+
+```js
 const { assetsSum } = require('fintech')
 
 const amountA = {BTC: 1, ETH: 11}
