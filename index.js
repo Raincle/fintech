@@ -101,14 +101,14 @@ const assetsValue = (amount, price) => {
  * The symbol you want to add
  * @return {String} localeString
  */
-const splitNum = (num, unit, symbol) => {
+const splitNum = (num, unit, symbol, keepFloat) => {
   unit = parseInt(unit || 3)
   symbol = (symbol || ',').toString()
   const numString = num.toString()
   const intPart = numString.split('.')[0]
   const intPartArr = intPart.split('')
   let floatPart = numString.split('.')[1]
-  if (floatPart) {
+  if (floatPart && !keepFloat) {
     floatPart = floatPart.slice(0, 3)
   }
   
